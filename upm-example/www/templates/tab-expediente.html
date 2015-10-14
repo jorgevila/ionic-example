@@ -1,0 +1,29 @@
+<!--
+{
+        "idalumno": "1",
+        "cod_asignatura": "27700",
+        "convocatoria": "JUN2016",
+        "nota": "5.0",
+        "curso": "Curso 1",
+        "nombre": "Formación histórica del Derecho en España",
+        "tipo": "FB",
+        "creditos": "6.0",
+        "temporalidad": "1"
+    }
+-->
+<ion-view view-title="Expediente">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="asignatura in asignaturas" type="item-text-wrap" href="#/tab/asignatura/{{asignatura.cod_asignatura}}">
+        <h2>{{asignatura.cod_asignatura}}</h2>
+        <h2>{{asignatura.nombre}}</h2>
+        <p>{{asignatura.curso}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(asignatura)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

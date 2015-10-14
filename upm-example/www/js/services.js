@@ -47,4 +47,49 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+
+.factory('Expediente', function($http) {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var asignaturas = [
+    {
+        "idalumno": "1",
+        "cod_asignatura": "27700",
+        "convocatoria": "JUN2016",
+        "nota": "5.0",
+        "curso": "Curso 1",
+        "nombre": "Formación histórica del Derecho en España",
+        "tipo": "FB",
+        "creditos": "6.0",
+        "temporalidad": "1"
+    }];
+
+  return {
+    all: function() {
+      alert("HOLA")
+      alert("H"+$http);
+      return $http.get("http://149.202.115.63/expediente?token=aSVsur56vb").then(function(response){
+        asignaturas = response.data;
+        alert("response"+response);
+        return asignaturas;
+      }, function(err) {
+        alert('ERR', err);
+        // err.status will contain the status code
+      });
+        
+    },
+    remove: function(asign) {
+      asignaturas.splice(asignaturas.indexOf(asign), 1);
+    },
+    get: function(asign_id) {
+      for (var i = 0; i < asignaturas.length; i++) {
+        if (asignaturas[i].cod_asignatura === parseInt(asign_id)) {
+          return asignaturas[i];
+        }
+      }
+      return null;
+    }
+  };
+})
