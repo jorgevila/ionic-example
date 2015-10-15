@@ -38,9 +38,18 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
-  $scope.asignaturas = Expediente.all();
-  alert("CURSO"+$scope.asignaturas[0].curso)
+  Expediente.all().then(function(response){
+        $scope.asignaturas = response;
+        alert("ASIG="+$scope.asignaturas);
+        //alert("CURSO"+$scope.asignaturas[0].curso);
+        return asignaturas;
+      }, function(err) {
+        alert('ERR', err);
+        // err.status will contain the status code
+        asignaturas = "No ha sido posible mostrar las asignaturas"
+        return asignaturas
+      });
+  
   $scope.remove = function(asignatura) {
     Expediente.remove(asignatura);
   };

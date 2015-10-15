@@ -13,17 +13,18 @@
 -->
 <ion-view view-title="Expediente">
   <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="asignatura in asignaturas" type="item-text-wrap" href="#/tab/asignatura/{{asignatura.cod_asignatura}}">
-        <h2>{{asignatura.cod_asignatura}}</h2>
-        <h2>{{asignatura.nombre}}</h2>
-        <p>{{asignatura.curso}}</p>
+    <ion-list can-swipe="listCanSwipe">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="x in asignaturas" type="item-text-wrap" href="#/tab/asignatura/{{x.cod_asignatura}}">
+        <h2>{{x.cod_asignatura}}</h2>
+        <h2>{{x.nombre}}</h2>
+        <p>{{x.curso}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <ion-option-button class="button-assertive" ng-click="remove(asignatura)">
+        <ion-option-button class="button-assertive" ng-click="remove(x)">
           Delete
         </ion-option-button>
       </ion-item>
     </ion-list>
+    <ion-scroll>
   </ion-content>
 </ion-view>

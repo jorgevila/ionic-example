@@ -49,34 +49,22 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('Expediente', function($http) {
+.factory('Expediente', [ '$http', function($http) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var asignaturas = [
-    {
-        "idalumno": "1",
-        "cod_asignatura": "27700",
-        "convocatoria": "JUN2016",
-        "nota": "5.0",
-        "curso": "Curso 1",
-        "nombre": "Formación histórica del Derecho en España",
-        "tipo": "FB",
-        "creditos": "6.0",
-        "temporalidad": "1"
-    }];
+  var asignaturas = [];
 
   return {
     all: function() {
-      alert("HOLA")
-      alert("H"+$http);
-      return $http.get("http://149.202.115.63/expediente?token=aSVsur56vb").then(function(response){
+      return $http.get("http://149.202.115.63/expediente?token=i5ULHPF3B2").then(function(response){
         asignaturas = response.data;
-        alert("response"+response);
         return asignaturas;
       }, function(err) {
         alert('ERR', err);
         // err.status will contain the status code
+        asignaturas = "No ha sido posible mostrar las asignaturas"
+        return asignaturas
       });
         
     },
@@ -92,4 +80,4 @@ angular.module('starter.services', [])
       return null;
     }
   };
-})
+}])
