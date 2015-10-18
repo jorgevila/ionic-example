@@ -40,8 +40,6 @@ angular.module('starter.controllers', [])
   //});
   Expediente.all().then(function(response){
         $scope.asignaturas = response;
-        alert("ASIG="+$scope.asignaturas);
-        //alert("CURSO"+$scope.asignaturas[0].curso);
         return asignaturas;
       }, function(err) {
         alert('ERR', err);

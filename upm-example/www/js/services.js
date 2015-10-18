@@ -57,13 +57,13 @@ angular.module('starter.services', [])
 
   return {
     all: function() {
-      return $http.get("http://149.202.115.63/expediente?token=i5ULHPF3B2").then(function(response){
+      return $http.get("http://149.202.115.63/expediente?token=7rfHMUmu7h").then(function(response){
         asignaturas = response.data;
         return asignaturas;
       }, function(err) {
         alert('ERR', err);
         // err.status will contain the status code
-        asignaturas = "No ha sido posible mostrar las asignaturas"
+        asignaturas = []
         return asignaturas
       });
         
@@ -73,7 +73,7 @@ angular.module('starter.services', [])
     },
     get: function(asign_id) {
       for (var i = 0; i < asignaturas.length; i++) {
-        if (asignaturas[i].cod_asignatura === parseInt(asign_id)) {
+        if (parseInt(asignaturas[i].cod_asignatura) === parseInt(asign_id)) {
           return asignaturas[i];
         }
       }

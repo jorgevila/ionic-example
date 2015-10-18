@@ -78,10 +78,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
   .state('tab.asignatura', {
-    url: '/expediente/:asignaturaId',
+    url: '/asignatura/:cod_asignatura',
     views: {
       'tab-expediente': {
-        templateUrl: 'templates/subject-detail.html',
+        templateUrl: 'templates/asignatura.html',
         controller: 'AsignaturaCtrl'
       }
     }

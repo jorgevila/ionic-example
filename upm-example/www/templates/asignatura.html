@@ -1,0 +1,23 @@
+<!--
+
+  {
+        "idalumno": "1",
+        "cod_asignatura": "27700",
+        "convocatoria": "JUN2016",
+        "nota": "5.0",
+        "curso": "Curso 1",
+        "nombre": "Formación histórica del Derecho en España",
+        "tipo": "FB",
+        "creditos": "6.0",
+        "temporalidad": "1"
+    },
+-->
+<ion-view view-title="{{asignatura.nombre}}">
+  <ion-content class="padding">
+    <h2>{{asignatura.cod_asignatura}}</h2>
+    <h2>{{asignatura.nombre}}</h2>
+    <p>{{asignatura.curso}} - {{asignatura.convocatoria}}</p>
+    <p>{{asignatura.creditos}} - {{asignatura.tipo}}</p>
+    <h2>Nota: {{asignatura.nota}}</h2>
+  </ion-content>
+</ion-view>
