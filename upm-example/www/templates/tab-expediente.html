@@ -12,7 +12,7 @@
     }
 -->
 <ion-view view-title="Expediente">
-  <ion-content>
+  <ion-content scroll="true">
     <ion-list can-swipe="listCanSwipe">
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="x in asignaturas" type="item-text-wrap" href="#/tab/asignatura/{{x.cod_asignatura}}">
         <h2>{{x.cod_asignatura}}</h2>
@@ -24,6 +24,5 @@
         </ion-option-button>
       </ion-item>
     </ion-list>
-    <ion-scroll>
   </ion-content>
 </ion-view>

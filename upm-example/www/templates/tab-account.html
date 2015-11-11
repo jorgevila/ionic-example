@@ -1,9 +1,39 @@
-<ion-view view-title="Account">
+<ion-view view-title="Perfil">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
+    <ion-toggle  ng-model="settings.pass">
+        Aprobado general
     </ion-toggle>
+    <ul class="list">
+
+	  <li class="item item-checkbox">
+	     <label class="checkbox">
+	       <input type="checkbox">
+	     </label>
+	     Derecho Romano
+	  </li>
+
+	  <li class="item item-checkbox">
+	     <label class="checkbox">
+	       <input type="checkbox">
+	     </label>
+	     Economía subprime
+	  </li>
+
+	  <li class="item item-checkbox">
+	     <label class="checkbox">
+	       <input type="checkbox">
+	     </label>
+	     Fifagate
+	  </li>
+
+	</ul>
+
+	<div class="item range">
+	  <i class="icon ion-volume-low"></i>
+	  <input type="range" name="volume">
+	  <i class="icon ion-volume-high"></i>
+	</div>
     </ion-list>
   </ion-content>
 </ion-view>

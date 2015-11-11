@@ -1,69 +1,22 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/598205061232103424/3j5HUXMY.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
-  }];
-
-  return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
-    }
-  };
-})
-
-.factory('Expediente', [ '$http', function($http) {
+.factory('Expediente', [ '$http', '$state', function($http, $state) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
   var asignaturas = [];
 
   return {
-    all: function() {
-      return $http.get("http://149.202.115.63/expediente?token=7rfHMUmu7h").then(function(response){
+    all: function(token) {
+      //console.log("http://149.202.115.63/expediente?token="+token);
+      return $http.get("http://149.202.115.63/expediente?token="+token).then(function(response){
         asignaturas = response.data;
         return asignaturas;
       }, function(err) {
-        alert('ERR', err);
+        //alert('ERR', err.status);
         // err.status will contain the status code
-        asignaturas = []
+        asignaturas = [];
+        $state.go("error");
         return asignaturas
       });
         
@@ -81,3 +34,45 @@ angular.module('starter.services', [])
     }
   };
 }])
+
+.factory('LoginService', [ '$http', '$q',  function($http, $q) {
+    var token;
+    return {
+        loginUser: function(name, pw) {
+            var deferred = $q.defer();
+            var promise = deferred.promise;
+ 
+            $http.get("http://149.202.115.63/login?user="+name+"&pass="+ pw).then(function(response){
+                if ('token' in response.data) {
+                  deferred.resolve(response.data.token);
+                  token=response.data.token;
+                  return response;
+                } else {
+                  deferred.reject('No pudo ser.... no había token');
+                  return null;
+                }
+              }, function(err) {
+                deferred.reject('No pudo ser....');
+                console.log('ERR='+ err.status);
+                return null
+              });
+
+
+            promise.success = function(fn) {
+                promise.then(fn);
+                return promise;
+            }
+            promise.error = function(fn) {
+                promise.then(null, fn);
+                return promise;
+            }
+            return promise;
+        },
+        getToken: function() {
+          return token;
+        }
+    }
+}])
+
+;
+
